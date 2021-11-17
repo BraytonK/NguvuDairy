@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<title>Brayton Kerekffy</title>
+		<title>What day would you like to get information for?</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src = "assets/js/script.js" defer></script>
 	</head>
 	<body class="is-preload">
 		<div id="wrapper">
@@ -20,24 +21,19 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>Brayton Kerekffy</h1>
-						<p>Cyber Security Major at George Fox University</p>
-						<nav>
-							<ul>
-								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-								<li><a href="https://github.com/BraytonK" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-						</nav>
+						<h1>Welcome Nguvu Dairy Employee!</h1>
+						<p>Choose a date/select a machine and we will generate a statistics page for you</p>
+						<input type = "date" name = "datePicker" id = "datePicker"/>
+						<form id="machine_checkbox_select">
+							<select name="machine">
+								<option value="Machine1">Machine 1</option>
+								<option value="Machine2">Machine 2</option>
+								<option value="Machine3">Machine 3</option>
+							</select>
+						</form>
+						<br>
+						<input type = "submit" name = "todaySubmit" id = "todaySubmit"/> <br>
 					</header>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-					</footer>
-
 			</div>
 		</div>
 		<script>
