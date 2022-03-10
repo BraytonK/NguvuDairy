@@ -1,45 +1,174 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>What day would you like to get information for?</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script src = "assets/js/script.js" defer></script>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+  <head>
+      <title>Database</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="main.css" />
+      <script src = "script.js" defer></script>
 
-				<!-- Header -->
-					<header id="header">
-						<h1>Welcome Nguvu Dairy Employee!</h1>
-						<p>Choose a date/select a machine and we will generate a statistics page for you</p>
-						<input type = "date" name = "datePicker" id = "datePicker"/>
-						<form id="machine_checkbox_select">
-							<select name="machine">
-								<option value="Machine1">Machine 1</option>
-								<option value="Machine2">Machine 2</option>
-								<option value="Machine3">Machine 3</option>
-							</select>
-						</form>
-						<br>
-						<input type = "submit" name = "todaySubmit" id = "todaySubmit"/> <br>
-					</header>
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+      <!-- Ajax-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!-- Scroll-spy navbar-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body class = "is-preload" data-spy="scroll" data-target=".navbar">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <div id="bg"></div>
+      <div id="overlay"></div>
+
+        <!-- Dynamic Navbar -->
+        <!-- Changes based on the subtopics in the article-->
+        <nav id="navbar" class="navbar">
+          <ul class ="nav" id="nav">
+            <li id="entry-nav-item"><a href="edit.html">EDIT</a></li>
+          </ul>
+        </nav>
+
+        <!-- Header -->
+        <header id ="header">
+
+          <!-- Name -->
+          <!--<h1><div id = "login">Login</h1>-->
+          <h1>Welcome Nguvu Dairy Employee!</h1>
+          <p>Choose a date/select a machine and we will generate a statistics page for you</p>
+
+          <!-- Snippet Browser -->
+          <article class = "snippetbrowser">
+            <!-- Add Location -->
+            <div id="get" class="tabcontent">
+                <div id="Get">
+                <article>
+                  <div class="snippet">
+                  <div class="snippet-container">
+                    <div class="snippet-row-padding">
+                      <div class="snippet-col">
+                        <div class="snippet-card snippet-round snippet-white">
+                          <div class="snippet-container">
+                            <form id="machine_dropdown_select">
+                              <input type = "date" name = "datePicker" id = "datePicker"/>
+                              <select name="machine" id="machine">
+                                <option value="Machine1">Machine 1</option>
+                                <option value="Machine2">Machine 2</option>
+                                <option value="Machine3">Machine 3</option>
+                              </select>
+                              <button id="submit">Get</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+                </article>
+                </div>
+              </div>
+        </header>
+      </div>
+  </body>
+  <script type="text/javascript">
+    window.onload = function() { 
+      document.body.classList.remove('is-preload');
+      openPage(event, 'get');
+    }
+    window.ontouchmove = function() { return false; }
+    window.onorientationchange = function() { document.body.scrollTop = 0; }
+
+  // Topic navigation
+
+    function openPage(evt, pageName) {
+      let i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      document.getElementById(pageName).style.display = "block";
+      evt.currentTarget.className += " active";
+      loadDynamicNavbar(pageName);
+    }
+
+  // Dynamic tab content
+
+    // Get the header
+    var header = document.getElementById("navbar");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    window.onscroll = function() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+
+    function loadDynamicNavbar(pageName) {
+
+      // Remove existing tabs
+      var parent = document.getElementById("nav");
+      while (parent.firstChild) {
+        parent.firstChild.remove();
+      }
+
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      li.className = "nav-item";
+      a.className = "nav-link";
+      a.innerHTML = "EDIT";
+      a.href = "edit.html";
+      // Append the div to the navbar
+      li.appendChild(a);
+      document.getElementById("nav").appendChild(li);
+
+      // Scan headers
+      var content = document.getElementById(pageName).getElementsByTagName("H2");
+      for (var i = 0; i < content.length; i++) {
+        // Create a new list item for each content header
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        li.className = "nav-item";
+        a.className = "nav-link";
+        a.innerHTML = "#" + content[i].innerHTML;
+        a.href = "#" + content[i].innerHTML;
+        // Append the div to the navbar
+        li.appendChild(a);
+        document.getElementById("nav").appendChild(li);
+      }
+    }
+
+    // Download data page
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent("Information goes here: " + text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+    // Start file download.
+    document.getElementById("submit").addEventListener("click", function(){
+      var date = document.getElementById("datePicker").value;
+      var machine = document.getElementById("machine").value;
+      var text = date + ", " + machine;
+      var filename = "myFormattedNote.html";
+      
+      download(filename, text);
+    }, false);
+  </script>
 </html>

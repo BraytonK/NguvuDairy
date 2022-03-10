@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <title>Database</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lora" />
+      <link rel="stylesheet" href="main.css" />
+      <script src = "script.js" defer></script>
+
+      <!-- Ajax-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!-- Scroll-spy navbar-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body class = "is-preload" data-spy="scroll" data-target=".navbar">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <div id="bg"></div>
+      <div id="overlay"></div>
+
+        <!-- Dynamic Navbar -->
+        <!-- Changes based on the subtopics in the article-->
+        <nav id="navbar" class="navbar">
+          <ul class ="nav" id="nav">
+            <li id="entry-nav-item"><a href="login.html"><img src="	https://nguvudairy.com/wp-content/uploads/2018/05/NGUVU_Home_ContentLogo.png" width="50" height="35" id="logo"></a></img></li>
+          </ul>
+        </nav>
+
+        <!-- Header -->
+        <header id ="header">
+
+          <!-- Title -->
+          <h1><div id ="title">Login</h1>
+
+
+          <!-- Snippet Browser -->
+          <div id = "allcontent">
+              <!-- Snippet Tabs -->
+                <div class="tab">
+                  <div class="login-page">
+                    <div class="form">
+                      <div class="login">
+                        <div class="login-header">
+                          <p>Please enter your credentials to login.</p>
+                        </div>
+                      </div>
+                      <form class="login-form">
+                        <input type="text" placeholder="username"/>
+                        <input type="password" placeholder="password"/>
+                        <a href = 'index.html'>bypass<button id="login-button">login</button></a>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          </div>
+        </header>
+  </body>
+  <script type="text/javascript">
+    window.onload = function() { 
+      document.body.classList.remove('is-preload');
+    }
+    window.ontouchmove = function() { return false; }
+    window.onorientationchange = function() { document.body.scrollTop = 0; }
+
+  // Button Onclick
+  document.getElementById("login-button").onclick = function () {
+    //print("Login button clicked");
+    alert("Login button clicked");
+    // Change the page to index.html
+    //location.href = "index.html";
+    //window.navigate("index.html");
+  };
+
+  // Topic navigation
+
+    function openPage(evt, pageName) {
+      let i, tabcontent, tablinks;
+
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for(i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      document.getElementById(pageName).style.display = "block";
+      evt.currentTarget.className += " active";
+      loadDynamicNavbar(pageName);
+    }
+
+  // Dynamic tab content
+
+    // Get the header
+    var header = document.getElementById("navbar");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    window.onscroll = function() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+
+    function loadDynamicNavbar(pageName) {
+
+      // Remove existing tabs
+      var parent = document.getElementById("nav");
+      while (parent.firstChild) {
+        parent.firstChild.remove();
+      }
+
+      // Scan headers
+      var content = document.getElementById(pageName).getElementsByTagName("H2");
+      for (var i = 0; i < content.length; i++) {
+        // Create a new list item for each content header
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        li.className = "nav-item";
+        a.className = "nav-link";
+        a.innerHTML = "#" + content[i].innerHTML;
+        a.href = "#" + content[i].innerHTML;
+        // Append the div to the navbar
+        li.appendChild(a);
+        document.getElementById("nav").appendChild(li);
+      }
+    }
+  </script>
+</html>
