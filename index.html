@@ -24,21 +24,36 @@
         <!-- Changes based on the subtopics in the article-->
         <nav id="navbar" class="navbar">
           <ul class ="nav" id="nav">
-            <li id="entry-nav-item"><a href="edit.html">EDIT</a></li>
+            <li id="entry-nav-item"><a href="login.html">SIGN OUT</a></li>
           </ul>
         </nav>
 
         <!-- Header -->
         <header id ="header">
 
-          <!-- Name -->
-          <!--<h1><div id = "login">Login</h1>-->
           <h1>Welcome Nguvu Dairy Employee!</h1>
-          <p>Choose a date/select a machine and we will generate a statistics page for you</p>
-
           <!-- Snippet Browser -->
+          <div id = "allcontent">
+            <!-- Snippet Tabs -->
+              <div class="tab">
+              <table class="snippettabs">
+                <tr>
+                  <div id="dynamictabs"></div>
+                    <th>
+                      <button class="tablinks" onclick="openPage(event, 'get')" id="defaultOpen"> Get </button>
+                    </th>
+                    <th>
+                      <button class="tablinks" onclick="openPage(event, 'add')" id="defaultOpen"> Add </button>
+                    </th>
+                    <th>
+                      <button class="tablinks" onclick="openPage(event, 'modify')"> Modify </button>
+                    </th>
+                </tr>
+              </table>
+              </div>
+          </div>
           <article class = "snippetbrowser">
-            <!-- Add Location -->
+            <!-- Get -->
             <div id="get" class="tabcontent">
                 <div id="Get Date">
                 <h2>Select Date Range</h2>
@@ -87,16 +102,117 @@
                   </div>
                 </article>
                 </div>
-
-              </div>
               <button id="submit">Get</button>
+              </div>
+            <!-- Add Location -->
+            <div id="add" class="tabcontent">
+                <div id="Add Location">
+                <h2>Add Location</h2>
+                <article>
+                  <div class="snippet">
+                  <div class="snippet-container">
+                    <div class="snippet-row-padding">
+                      <div class="snippet-col">
+                        <div class="snippet-card snippet-round snippet-white">
+                          <div class="snippet-container">
+                            <p>Type new location</p>
+                            <form class="location-form">
+                              <input type="text" placeholder="location"/>
+                              <button id="location-submit-button">Add</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+                </article>
+                </div>
+                <div id="Add Machine">
+                <h2>Add Machine</h2>
+                <article>
+                  <div class="snippet">
+                  <div class="snippet-container">
+                    <div class="snippet-row-padding">
+                      <div class="snippet-col">
+                        <div class="snippet-card snippet-round snippet-white">
+                          <div class="snippet-container">
+                            <p>Type new machine</p>
+                            <form class="machine-form">
+                              <input type="text" placeholder="machine"/>
+                              <select name="location" id="location">
+                                <option value="Location1">Location 1</option>
+                                <option value="Location2">Location 2</option>
+                                <option value="Machine3">Location 3</option>
+                              </select>
+                              <button id="location-submit-button">Add</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+                </article>
+                </div>
+              </div>
+
+            <!-- Add Machine -->
+            <div id="modify" class="tabcontent">
+              <!--- Modify Location -->
+              <div id="Modify Location">
+                <h2>Modify Location</h2>
+                <article>
+                  <div class="snippet">
+                  <div class="snippet-container">
+                    <div class="snippet-row-padding">
+                      <div class="snippet-col">
+                        <div class="snippet-card snippet-round snippet-white">
+                          <div class="snippet-container">
+                            <p>Type new location</p>
+                            <form class="location-form">
+                              <input type="text" placeholder="location"/>
+                              <button id="location-submit-button">Add</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+                </article>
+                <!--- Modify Machine -->
+                <h2>Modify Machine</h2>
+                <article>
+                  <div class="snippet">
+                  <div class="snippet-container">
+                    <div class="snippet-row-padding">
+                      <div class="snippet-col">
+                        <div class="snippet-card snippet-round snippet-white">
+                          <div class="snippet-container">
+                            <p>Type new machine</p>
+                            <form class="machine-form">
+                              <input type="text" placeholder="machine"/>
+                              <select name="location" id="location">
+                                <option value="Location1">Location 1</option>
+                                <option value="Location2">Location 2</option>
+                                <option value="Machine3">Location 3</option>
+                              </select>
+                              <button id="location-submit-button">Add</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+            </div>
         </header>
-      </div>
+    </div>
   </body>
   <script type="text/javascript">
     window.onload = function() { 
       document.body.classList.remove('is-preload');
-      openPage(event, 'get');
     }
     window.ontouchmove = function() { return false; }
     window.onorientationchange = function() { document.body.scrollTop = 0; }
@@ -152,16 +268,6 @@
       a.className = "nav-link";
       a.innerHTML = "SIGN OUT";
       a.href = "login.html";
-      // Append the div to the navbar
-      li.appendChild(a);
-      document.getElementById("nav").appendChild(li);
-
-      var li = document.createElement("li");
-      var a = document.createElement("a");
-      li.className = "nav-item";
-      a.className = "nav-link";
-      a.innerHTML = "EDIT";
-      a.href = "edit.html";
       // Append the div to the navbar
       li.appendChild(a);
       document.getElementById("nav").appendChild(li);
