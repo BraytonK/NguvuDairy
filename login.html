@@ -48,9 +48,9 @@
                         </div>
                       </div>
                       <form class="login-form">
-                        <input type="text" placeholder="username"/>
-                        <input type="password" placeholder="password"/>
-                        <a href = 'index.html'>bypass<button id="login-button">login</button></a>
+                        <input id="username" type="text" placeholder="username"/>
+                        <input id="password" type="password" placeholder="password"/>
+                        <a href = 'index.html'>bypass</a><button id="loginbutton">login</button>
                       </form>
                     </div>
                   </div>
@@ -59,81 +59,4 @@
           </div>
         </header>
   </body>
-  <script type="text/javascript">
-    window.onload = function() { 
-      document.body.classList.remove('is-preload');
-    }
-    window.ontouchmove = function() { return false; }
-    window.onorientationchange = function() { document.body.scrollTop = 0; }
-
-  // Button Onclick
-  document.getElementById("login-button").onclick = function () {
-    //print("Login button clicked");
-    alert("Login button clicked");
-    // Change the page to index.html
-    //location.href = "index.html";
-    //window.navigate("index.html");
-  };
-
-  // Topic navigation
-
-    function openPage(evt, pageName) {
-      let i, tabcontent, tablinks;
-
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for(i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-
-      document.getElementById(pageName).style.display = "block";
-      evt.currentTarget.className += " active";
-      loadDynamicNavbar(pageName);
-    }
-
-  // Dynamic tab content
-
-    // Get the header
-    var header = document.getElementById("navbar");
-
-    // Get the offset position of the navbar
-    var sticky = header.offsetTop;
-
-    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    window.onscroll = function() {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-      } else {
-        header.classList.remove("sticky");
-      }
-    }
-
-    function loadDynamicNavbar(pageName) {
-
-      // Remove existing tabs
-      var parent = document.getElementById("nav");
-      while (parent.firstChild) {
-        parent.firstChild.remove();
-      }
-
-      // Scan headers
-      var content = document.getElementById(pageName).getElementsByTagName("H2");
-      for (var i = 0; i < content.length; i++) {
-        // Create a new list item for each content header
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        li.className = "nav-item";
-        a.className = "nav-link";
-        a.innerHTML = "#" + content[i].innerHTML;
-        a.href = "#" + content[i].innerHTML;
-        // Append the div to the navbar
-        li.appendChild(a);
-        document.getElementById("nav").appendChild(li);
-      }
-    }
-  </script>
 </html>
